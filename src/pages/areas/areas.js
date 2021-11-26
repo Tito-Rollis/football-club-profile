@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 function Areas() {
     const api = process.env.REACT_APP_MY_API_KEY_NAME;
     const [area, setArea] = useState('');
@@ -30,21 +30,6 @@ function Areas() {
         startIndex += 30;
         itemInPage += 30;
     }
-    // let team = async () => {
-    //     fetch('https://api.football-data.org/v2/teams/100', {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-Auth-Token': api,
-    //         },
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log('Success:', data);
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error:', error);
-    //         });
-    // };
 
     useEffect(() => {
         fetch('https://api.football-data.org/v2/areas', {
@@ -62,18 +47,40 @@ function Areas() {
                 console.error('Error:', error);
             });
     }, [api]);
+    box.splice(
+        box.findIndex((el) => {
+            return el.length === 0;
+        }),
+        1
+    );
+
     return (
-        <div className="h-screen pt-6">
-            <h1 className="text-medium tracking-wide">All Teams</h1>
+        <div className="pt-6 pb-6">
+            <h1 className="tracking-wide text-2xl font-medium text-center">
+                All Areas
+            </h1>
             <ul className="flex flex-wrap w-3/5 mt-4 mx-auto border-2 border-blue-300">
                 {box[currentPage] ? (
                     box[currentPage].map((item) => {
                         return (
                             <li
-                                className="border-2 border-green-400 w-2/4 hover:bg-green-600 hover:text-white transition-all"
+                                className="border-2 border-green-400  w-2/4 hover:bg-green-600 hover:text-white transition-all"
                                 key={item.id}
                             >
-                                <a href="#">* {item.name}</a>
+                                {(() => {
+                                    if (item.name === 'England') {
+                                        return (
+                                            <Link
+                                                className="text-blue-500"
+                                                to="/england"
+                                            >
+                                                * {item.name}
+                                            </Link>
+                                        );
+                                    } else {
+                                        return <a href="#">* {item.name}</a>;
+                                    }
+                                })()}
                             </li>
                         );
                     })
@@ -81,7 +88,19 @@ function Areas() {
                     <p>Loading...</p>
                 )}
             </ul>
-            <div className="w-36 flex justify-between mx-auto mt-6">
+            <div className="flex flex-row justify-center w-3/5 mt-2 mx-auto">
+                <div className="flex flex-row items-center w-2/4 gap-x-2 mt-1 md:mt-3 justify-center mx-auto">
+                    <p>*</p>
+                    <div className="w-5 h-2 bg-blue-400"></div>
+                    <p className="text-xs md:text-sm">Filled with teams</p>
+                </div>
+                <div className="flex flex-row items-center w-2/4 gap-x-2 mt-1 md:mt-3 justify-center mx-auto">
+                    <p>*</p>
+                    <div className="w-5 h-2 bg-black"></div>
+                    <p className="text-xs md:text-sm">Not Filled with teams</p>
+                </div>
+            </div>
+            <div className="w-36 flex justify-between mx-auto mt-2 md:mt-3">
                 <button
                     className=" bg-yellow-400 h-10 w-16 rounded-lg"
                     onClick={prevBtn}
