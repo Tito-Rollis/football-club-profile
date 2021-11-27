@@ -101,18 +101,38 @@ function Areas() {
                 </div>
             </div>
             <div className="w-36 flex justify-between mx-auto mt-2 md:mt-3">
-                <button
-                    className=" bg-yellow-400 h-10 w-16 rounded-lg"
-                    onClick={prevBtn}
-                >
-                    &lt;&lt;
-                </button>
-                <button
-                    className=" bg-blue-400 h-10 w-16 rounded-lg"
-                    onClick={nextBtn}
-                >
-                    &gt;&gt;
-                </button>
+                {currentPage <= 0 ? (
+                    <button
+                        disabled
+                        className=" bg-yellow-400 h-10 w-16 rounded-lg "
+                        onClick={prevBtn}
+                    >
+                        &lt;&lt;
+                    </button>
+                ) : (
+                    <button
+                        className=" bg-yellow-400 h-10 w-16 rounded-lg "
+                        onClick={prevBtn}
+                    >
+                        &lt;&lt;
+                    </button>
+                )}
+                {currentPage >= box.length - 1 ? (
+                    <button
+                        disabled
+                        className=" bg-blue-400 h-10 w-16 rounded-lg"
+                        onClick={nextBtn}
+                    >
+                        &gt;&gt;
+                    </button>
+                ) : (
+                    <button
+                        className=" bg-blue-400 h-10 w-16 rounded-lg"
+                        onClick={nextBtn}
+                    >
+                        &gt;&gt;
+                    </button>
+                )}
             </div>
         </div>
     );

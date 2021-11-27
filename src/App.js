@@ -1,19 +1,26 @@
 import './App.css';
 import Areas from './pages/areas/areas';
-import England from './pages/teams/england';
-import Germany from './pages/teams/germany';
-import { Route, Routes } from 'react-router-dom';
+import England from './pages/teams/england/england';
+import Team from './components/teamProfile';
+import Player from './components/playerProfile';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
     return (
-        <Routes>
-            <Route exact path="/" element={<Areas />} />
-            <Route path="areas" element={<Areas />} />
-            <Route path="england" element={<England />} />
-            <Route path="germany" element={<Germany />} />
-        </Routes>
-        // <Areas />
-        // <Teams />
+        <Switch>
+            <Route exact path="/">
+                <Areas />
+            </Route>
+            <Route path="/team">
+                <Team />
+            </Route>
+            <Route path="/player">
+                <Player />
+            </Route>
+            <Route path="/england">
+                <England />
+            </Route>
+        </Switch>
     );
 }
 

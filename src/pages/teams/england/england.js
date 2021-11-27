@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Teams() {
     const api = process.env.REACT_APP_MY_API_KEY_NAME;
@@ -47,7 +48,7 @@ function Teams() {
     );
     return (
         <div className="h-screen pt-6">
-            <h1 className="text-medium tracking-wide text-center">
+            <h1 className="tracking-wide text-2xl font-medium text-center">
                 All England Teams
             </h1>
             <ul className="flex text-sm md:text-base flex-wrap w-11/12 md:w-3/5 mt-4 mx-auto border-2 border-blue-300">
@@ -58,7 +59,23 @@ function Teams() {
                                 className="border-2 border-green-400 w-2/4 hover:bg-green-600 hover:text-white transition-all"
                                 key={item.id}
                             >
-                                <a href="#">* {item.name}</a>
+                                <Link
+                                    to={{
+                                        pathname: '/team',
+                                        state: {
+                                            id: item.id,
+                                            name: item.name,
+                                            add: item.address,
+                                            phone: item.phone,
+                                            web: item.website,
+                                            found: item.founded,
+                                            color: item.clubColors,
+                                            venue: item.venue,
+                                        },
+                                    }}
+                                >
+                                    * {item.name}
+                                </Link>
                             </li>
                         );
                     })
