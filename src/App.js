@@ -1,8 +1,8 @@
 import './App.css';
 import Areas from './pages/areas/areas';
 import England from './pages/teams/england/england';
-import Team from './components/teamProfile';
-import Player from './components/playerProfile';
+import Team from './pages/teams/england/teamProfile';
+import Player from './pages/teams/england/playerProfile';
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
