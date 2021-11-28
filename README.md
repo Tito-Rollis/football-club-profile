@@ -1,3 +1,9 @@
+# Foot Club Profile App Quick Overview
+In this app, you can get all the clubs in specific area which you want to pick and get the detail of the clubs and its players with their detail too.
+
+# Tech Stack
+This app's tech consist of React.Js, Tailwind CSS, and React Router Dom.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
